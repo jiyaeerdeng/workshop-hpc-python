@@ -73,8 +73,8 @@ def main(nFiles,size,output):
     if rank == 0:
  # Summarize params
         print("My names is rank %d"%rank+  " and I'm starting...")
-        print('world_size= %s' %world_size)
-        print('nFiles=%s' %nFiles)
+        print(f'world_size= {world_size}')
+        print(f'nFiles={nFiles}')
         print('output_template=%s%%05d.txt ' %output)
         print('size=%d' %size)
         data = np.arange(nFiles,dtype='i')
