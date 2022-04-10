@@ -43,10 +43,9 @@ def set_params(argv):
         elif opt in ("-o", "--output"):
             print("Setting output")
             output = arg
-
 # Summarize params
-    print('nFiles=%s' %nFiles)
-    print('size= %s' %size)
+    print(f'nFiles={nFiles}')
+    print(f'size= {size}')
     print('output_template=%s%%05d.txt ' %output)
     print('nWorkers=%d' %nWorkers)
 
@@ -65,7 +64,7 @@ def main(argv):
 
     os.makedirs("output",exist_ok='True')
     with mp.Pool(processes=nWorkers) as pool:
-        for i in range(0,nFiles):
+        for i in range(nFiles):
             pool.apply(write_data,args=(X,Y,output,nFiles,i,))
 
 if __name__=='__main__':

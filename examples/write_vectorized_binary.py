@@ -40,10 +40,9 @@ def set_params(argv):
         elif opt in ("-o", "--output"):
             print("Setting output")
             output = arg
-
 # Summarize params
-    print('nFiles=%s' %nFiles)
-    print('size= %s' %size)
+    print(f'nFiles={nFiles}')
+    print(f'size= {size}')
     print('output_template=%s%%05d.txt ' %output)
 
     return nFiles,size,output, nWorkers
@@ -61,7 +60,7 @@ def main(argv):
     X,Y = np.meshgrid(x,y)
 
 
-    for i in range(0,nFiles):
+    for i in range(nFiles):
         write_data(X,Y,output,nFiles,i)
 
 if __name__=='__main__':

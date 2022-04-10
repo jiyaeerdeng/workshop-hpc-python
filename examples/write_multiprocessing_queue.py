@@ -16,9 +16,7 @@ def write_data(X,Y,output,nFiles,i):
 
     t=time.time()
     np.save(filename,Z)
-    elapsed = time.time()-t
-
-    return elapsed
+    return time.time()-t
 
 def set_params(argv):
     nFiles=15
@@ -47,11 +45,10 @@ def set_params(argv):
         elif opt in ("-w", "--nWorkers"):
             print("Setting output")
             nWorkers = int(arg)
-
 # Summarize params
-    print('nFiles=%s' %nFiles)
-    print('nWorkers=%s' %nWorkers)
-    print('size= %s' %size)
+    print(f'nFiles={nFiles}')
+    print(f'nWorkers={nWorkers}')
+    print(f'size= {size}')
     print('output_template=%s%%06d.txt ' %output)
 
     return nFiles,size,output, nWorkers
@@ -103,11 +100,11 @@ def main(argv):
     workers=[]
 
     # Create work
-    for i in range(0,nFiles):
+    for i in range(nFiles):
         task_queue.put(i)
 
     # start workers
-    for i in range(0,nWorkers):
+    for i in range(nWorkers):
         w=worker(task_queue,result_queue,size,output,nFiles)
         w.start()
         workers.append(w)
@@ -118,10 +115,8 @@ def main(argv):
     for w in workers:
         w.join()
 
-    for i in range(0,nFiles):
+    for i in range(nFiles):
         elapsed[i] = result_queue.get()
-
-
 #    for w in workers:
 #        w.terminate()
     stats=elapsed*1000

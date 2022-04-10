@@ -46,10 +46,9 @@ def set_params(argv):
         elif opt in ("-o", "--output"):
             print("Setting output")
             output = arg
-
 # Summarize params
-    print('nFiles=%s' %nFiles)
-    print('size= %s' %size)
+    print(f'nFiles={nFiles}')
+    print(f'size= {size}')
     print('output_template=%s%%05d.txt ' %output)
 
     return nFiles,size,output, nWorkers
@@ -66,7 +65,7 @@ def main(argv):
     y = np.arange(y_origin-size/2,y_origin+size/2,1)
 
     os.makedirs("output",exist_ok='True')
-    for i in range(0,nFiles):
+    for i in range(nFiles):
         write_data(x,y,output,nFiles,i)
 
 if __name__=='__main__':

@@ -69,11 +69,10 @@ def main(nFiles,size,output):
     chunks=None
     if rank == 0:
          # Summarize params
-        print('world_size= %s' %world_size)
-        print('nFiles=%s' %nFiles)
+        print(f'world_size= {world_size}')
+        print(f'nFiles={nFiles}')
         print('output_template=%s%%05d.txt ' %output)
         print('size=%d' %size)
-
     # Send pieces of data from rank 0 to whole world
         data   = np.arange(nFiles,dtype='i')
         chunks = data.reshape((n_chunks,int(nFiles/n_chunks)))
